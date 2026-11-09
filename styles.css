@@ -1,0 +1,134 @@
+/* =========================================================
+   styles.css – Halaman Menu TUKU
+   Struktur: 1) Token  2) Reset  3) Layout  4) Komponen  5) Utilitas
+   ========================================================= */
+
+/* 1) CUSTOM PROPERTIES (warna & spacing) */
+:root {
+  /* Warna */
+  --color-bg: #f1ebe0;
+  --color-surface: #fbf8f2;
+  --color-ink: #3b2314;
+  --color-muted: #7d6a5c;
+  --color-line: #ddd2c2;
+  --color-brand: #4a2c1a;
+  --color-brand-ink: #fbf8f2;
+  --color-error: #b3261e;
+  --color-ok: #2e6b3a;
+  --color-outer: #e4dccf;
+
+  /* Spacing (skala 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+
+  /* Lainnya */
+  --radius: 8px;
+  --font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* 2) RESET */
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+body { font-family: var(--font); background: var(--color-outer); color: var(--color-ink); }
+button, input, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* 3) LAYOUT – kolom ala ponsel di tengah layar */
+.app {
+  max-width: 420px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--color-bg);
+  position: relative;
+  padding-bottom: 64px; /* ruang untuk bottom-nav */
+}
+main { padding: var(--space-4); display: grid; gap: var(--space-4); }
+
+/* 4) KOMPONEN */
+
+/* Header */
+.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-line);
+  position: sticky; top: 0; background: var(--color-bg); z-index: 5;
+}
+.brand { font-weight: 900; font-size: 20px; letter-spacing: -.03em; }
+.icon-btn { background: none; border: 0; font-size: 20px; cursor: pointer; position: relative; padding: var(--space-1) var(--space-2); }
+.badge {
+  position: absolute; top: -4px; right: -6px; min-width: 18px; height: 18px;
+  border-radius: 9px; background: var(--color-brand); color: var(--color-brand-ink);
+  font-size: 11px; display: grid; place-items: center;
+}
+
+/* Drawer */
+.drawer { background: var(--color-surface); border-bottom: 1px solid var(--color-line); }
+.drawer[hidden] { display: none; }
+.drawer a { display: block; padding: var(--space-3) var(--space-4); border-top: 1px solid var(--color-line); font-size: 14px; }
+
+/* Intro */
+.eyebrow { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--color-muted); margin-bottom: var(--space-2); }
+h1 { font-size: 26px; letter-spacing: -.02em; }
+h2 { font-size: 16px; margin-bottom: var(--space-3); }
+
+/* Tabs */
+.tabs { display: flex; gap: var(--space-2); overflow-x: auto; }
+.tab {
+  padding: var(--space-2) var(--space-3); border-radius: 20px; cursor: pointer;
+  border: 1px solid var(--color-line); background: var(--color-surface); font-size: 12px; white-space: nowrap;
+}
+.tab.is-active { background: var(--color-brand); color: var(--color-brand-ink); border-color: var(--color-brand); }
+
+/* Kartu menu */
+.menu-list { display: grid; gap: var(--space-2); }
+.card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); }
+.card[hidden] { display: none; }
+.card article { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); }
+.thumb { width: 34px; height: 34px; border-radius: 6px; background: var(--color-outer); display: grid; place-items: center; font-size: 11px; font-weight: 700; flex: none; }
+.info { flex: 1; }
+.info h3 { font-size: 14px; }
+.info p { font-size: 11px; color: var(--color-muted); margin: 2px 0; }
+.info strong { font-size: 12px; }
+
+/* Tombol */
+.btn {
+  display: block; width: 100%; padding: var(--space-3); border-radius: var(--radius);
+  border: 1px solid var(--color-brand); background: var(--color-brand); color: var(--color-brand-ink);
+  font-weight: 600; font-size: 13px; cursor: pointer;
+}
+.btn:hover { opacity: .9; }
+.btn:focus-visible, .tab:focus-visible, .icon-btn:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+.btn-sm { width: auto; padding: var(--space-2) var(--space-3); font-size: 11px; }
+.btn-ghost { background: transparent; color: var(--color-brand); margin-top: var(--space-2); }
+
+/* Panel (keranjang & form) */
+.panel { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); padding: var(--space-4); }
+.cart-items li { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); font-size: 13px; padding: var(--space-2) 0; border-bottom: 1px solid var(--color-line); }
+.cart-items .qty button { width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--color-line); background: var(--color-bg); cursor: pointer; }
+.total { display: flex; justify-content: space-between; margin-top: var(--space-3); font-size: 14px; }
+.muted { font-size: 12px; color: var(--color-muted); }
+
+/* Form */
+.field { margin-bottom: var(--space-3); }
+label { display: block; font-size: 11px; font-weight: 600; margin-bottom: var(--space-1); }
+input, textarea { width: 100%; padding: var(--space-3); border: 1px solid var(--color-line); border-radius: var(--radius); background: var(--color-bg); }
+input.invalid { border-color: var(--color-error); }
+.error { display: block; color: var(--color-error); font-size: 11px; min-height: 14px; margin-top: var(--space-1); }
+.success { color: var(--color-ok); font-size: 12px; margin-top: var(--space-2); }
+
+/* Bottom nav */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 420px; display: flex;
+  background: var(--color-bg); border-top: 1px solid var(--color-line);
+}
+.bottom-nav a { flex: 1; text-align: center; padding: var(--space-3) 0; font-size: 11px; color: var(--color-muted); }
+.bottom-nav a.is-current { color: var(--color-brand); font-weight: 700; }
+
+/* 5) UTILITAS */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+html { scroll-behavior: smooth; }

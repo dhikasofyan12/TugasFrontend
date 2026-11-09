@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu – TUKU Kopi untuk Tetangga</title>
+  <meta name="description" content="Halaman menu TUKU: pilih kopi, tambah ke keranjang, dan pesan.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- KOMPONEN 1: Header + tombol toggle menu (drawer) -->
+    <header class="site-header">
+      <button class="icon-btn" id="menuToggle" aria-expanded="false" aria-controls="drawer" aria-label="Buka menu navigasi">☰</button>
+      <p class="brand">TUKU</p>
+      <button class="icon-btn cart-btn" id="cartOpen" aria-label="Lihat keranjang">
+        🛒 <span class="badge" id="cartCount" aria-live="polite">0</span>
+      </button>
+    </header>
+
+    <!-- KOMPONEN 2: Drawer navigasi (tersembunyi sampai di-toggle) -->
+    <nav class="drawer" id="drawer" aria-label="Navigasi utama" hidden>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#keranjang">Keranjang</a></li>
+        <li><a href="#pesan">Data pengambil</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Judul halaman + lokasi pengambilan -->
+      <section class="intro">
+        <p class="eyebrow">Toko Kopi TUKU · TUKU Cipete</p>
+        <h1>Mau TUKU apa?</h1>
+      </section>
+
+      <!-- KOMPONEN 3: Tab kategori (filter menu) -->
+      <section aria-label="Kategori menu">
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" role="tab" aria-selected="true"  data-filter="kopi-susu">Kopi susu</button>
+          <button class="tab"           role="tab" aria-selected="false" data-filter="klasik">Klasik</button>
+          <button class="tab"           role="tab" aria-selected="false" data-filter="lainnya">Lainnya</button>
+        </div>
+      </section>
+
+      <!-- KOMPONEN 4: Daftar menu (kartu produk) -->
+      <section id="menu" aria-labelledby="menuTitle">
+        <h2 id="menuTitle" class="visually-hidden">Daftar menu</h2>
+        <ul class="menu-list" id="menuList">
+          <li class="card" data-cat="kopi-susu" data-id="kst" data-name="Kopi Susu Tetangga" data-price="23000">
+            <article>
+              <span class="thumb" aria-hidden="true">01</span>
+              <div class="info"><h3>Kopi Susu Tetangga</h3><p>Racikan andalan TUKU</p><strong>Rp23.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="kopi-susu" data-id="nab" data-name="KST Nabati" data-price="25000">
+            <article>
+              <span class="thumb" aria-hidden="true">02</span>
+              <div class="info"><h3>KST Nabati</h3><p>Susu nabati, tanpa laktosa</p><strong>Rp25.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="kopi-susu" data-id="mini" data-name="Mini KST" data-price="18000">
+            <article>
+              <span class="thumb" aria-hidden="true">03</span>
+              <div class="info"><h3>Mini KST</h3><p>Ukuran kecil, rasa sama</p><strong>Rp18.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="klasik" data-id="lat" data-name="Latte" data-price="26000">
+            <article>
+              <span class="thumb" aria-hidden="true">04</span>
+              <div class="info"><h3>Latte</h3><p>Kopi susu lembut</p><strong>Rp26.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="klasik" data-id="cap" data-name="Cappuccino" data-price="26000">
+            <article>
+              <span class="thumb" aria-hidden="true">05</span>
+              <div class="info"><h3>Cappuccino</h3><p>Busa susu tebal</p><strong>Rp26.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="klasik" data-id="moc" data-name="Mocha" data-price="28000">
+            <article>
+              <span class="thumb" aria-hidden="true">06</span>
+              <div class="info"><h3>Mocha</h3><p>Cokelat + kopi</p><strong>Rp28.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="lainnya" data-id="kh" data-name="Kopi Hitam Tetangga" data-price="20000">
+            <article>
+              <span class="thumb" aria-hidden="true">07</span>
+              <div class="info"><h3>Kopi Hitam Tetangga</h3><p>Bersih, tegas, jernih</p><strong>Rp20.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+          <li class="card" data-cat="lainnya" data-id="cds" data-name="Cold Drip Sore" data-price="30000">
+            <article>
+              <span class="thumb" aria-hidden="true">08</span>
+              <div class="info"><h3>Cold Drip Sore</h3><p>Fruity, ringan, segar</p><strong>Rp30.000</strong></div>
+              <button class="btn btn-sm add">Tambah</button>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- KOMPONEN 5: Ringkasan keranjang -->
+      <aside id="keranjang" class="panel" aria-labelledby="cartTitle">
+        <h2 id="cartTitle">Keranjang</h2>
+        <ul id="cartItems" class="cart-items"></ul>
+        <p id="cartEmpty" class="muted">Keranjang masih kosong.</p>
+        <p class="total">Total <strong id="cartTotal">Rp0</strong></p>
+        <button class="btn btn-ghost" id="cartClear" type="button">Kosongkan</button>
+      </aside>
+
+      <!-- KOMPONEN 6: Form data pengambil (validasi) -->
+      <section id="pesan" class="panel" aria-labelledby="formTitle">
+        <h2 id="formTitle">Data pengambil</h2>
+        <form id="orderForm" novalidate>
+          <div class="field">
+            <label for="nama">Nama</label>
+            <input id="nama" name="nama" type="text" autocomplete="name" placeholder="Nama kamu" required>
+            <small class="error" id="namaErr" role="alert"></small>
+          </div>
+          <div class="field">
+            <label for="hp">Nomor telepon</label>
+            <input id="hp" name="hp" type="tel" inputmode="numeric" placeholder="08xxxxxxxxxx" required>
+            <small class="error" id="hpErr" role="alert"></small>
+          </div>
+          <div class="field">
+            <label for="catatan">Catatan (opsional)</label>
+            <textarea id="catatan" name="catatan" rows="2" maxlength="80" placeholder="Mis. less sugar"></textarea>
+          </div>
+          <button class="btn" type="submit">Pesan sekarang</button>
+          <p class="success" id="formMsg" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <!-- KOMPONEN 7: Footer / navigasi bawah -->
+    <footer class="bottom-nav">
+      <a href="#menu" class="is-current">Menu</a>
+      <a href="#keranjang">Keranjang</a>
+      <a href="#pesan">Pesan</a>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
